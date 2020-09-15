@@ -704,15 +704,128 @@
 // let visitedSet = new WeakSet();
 
 // let john = { name: "John" };
-// let pete = { name: "Pete" };
-// let mary = { name: "Mary" };
-// visitedSet.add(john); // John заходил к нам
-// visitedSet.add(pete); // потом Pete
-// visitedSet.add(john); // John снова
-// // visitedSet сейчас содержит двух пользователей
-// // проверим, заходил ли John?
-// alert(visitedSet.has(john)); // true
-// // проверим, заходила ли Mary?
-// alert(visitedSet.has(mary)); // false
-// john = null;
-// // структура данных visitedSet будет очищена автоматически
+// // let pete = { name: "Pete" };
+// // let mary = { name: "Mary" };
+// // visitedSet.add(john); // John заходил к нам
+// // visitedSet.add(pete); // потом Pete
+// // visitedSet.add(john); // John снова
+// // // visitedSet сейчас содержит двух пользователей
+// // // проверим, заходил ли John?
+// // alert(visitedSet.has(john)); // true
+// // // проверим, заходила ли Mary?
+// // alert(visitedSet.has(mary)); // false
+// // john = null;
+// // // структура данных visitedSet будет очищена автоматически
+// //приклад Хранение отметок "не прочитано"
+// let messages = [
+//   { text: "Hello", from: "John" },
+//   { text: "How goes?", from: "John" },
+//   { text: "See you soon", from: "Alice" },
+// ];
+// let readMessages = new WeakSet();
+// // Два сообщения были прочитаны
+// readMessages.add(messages[0]);
+// readMessages.add(messages[1]);
+// // readMessages содержит 2 элемента
+// // ...давайте снова прочитаем первое сообщение!
+// readMessages.add(messages[0]);
+// // readMessages до сих пор содержит 2 элемента
+// // Вопрос: было ли сообщение message[0] прочитано?
+// alert("Read message 0: " + readMessages.has(messages[0])); // true
+// messages.shift();
+// // теперь readMessages содержит 1 элемент (хотя технически память может быть очищена позже)
+// //
+// //
+// //Приклад  Для хранения даты мы можем использовать WeakMap:
+
+// let messages = [
+//   { text: "Hello", from: "John" },
+//   { text: "How goes?", from: "John" },
+//   { text: "See you soon", from: "Alice" },
+// ];
+// let readMap = new WeakMap();
+// readMap.set(messages[0], new Date(2017, 1, 1));
+// //
+// //
+// //
+// //
+// //
+// //
+//
+// Объект Date мы рассмотрим позднее
+////
+//
+//
+// Object.keys, values, entries
+// Для простых объектов доступны следующие методы:
+
+// Object.keys(obj) – возвращает массив ключей.
+// Object.values(obj) – возвращает массив значений.
+// Object.entries(obj) – возвращает массив пар [ключ, значение].
+
+// let user = {
+//   name: "John",
+//   age: 30
+// };
+// Object.keys(user) = ["name", "age"]
+// Object.values(user) = ["John", 30]
+// Object.entries(user) = [ ["name","John"], ["age",30] ]
+
+// //приклад
+// Вот пример использования Object.values ​​для перебора значений свойств в цикле:
+
+// let user = {
+//   name: "John",
+//   age: 30
+// };
+// // перебор значений
+// for (let value of Object.values(user)) {
+//   alert(value); // John, затем 30
+// }
+
+// //приклад
+// Например, у нас есть объект с ценами, и мы хотели бы их удвоить:
+
+// let prices = {
+//   banana: 1,
+//   orange: 2,
+//   meat: 4,
+// };
+
+// let doublePrices = Object.fromEntries(
+//   // преобразовать в массив, затем map, затем fromEntries обратно объект
+//   Object.entries(prices).map(([key, value]) => [key, value * 2])
+// );
+
+// alert(doublePrices.meat); // 8
+
+// //приклад
+// Напишите функцию sumSalaries(salaries), которая возвращает сумму всех зарплат с помощью метода Object.values и цикла for..of.
+// Если объект salaries пуст, то результат должен быть 0.
+// Например:
+// function sumSalaries(salaries) {
+//   //функція
+//   let sum = 0; //оголошення сум
+//   for (let salary of Object.values(salaries)) {
+//     //цикл перебору елементів з масиву
+//     sum += salary; //додає вартість з елем. масиву
+//   }
+//   return sum; //повертає суму
+// }
+// let salaries = {
+//   //масив
+//   John: 100,
+//   Pete: 300,
+//   Mary: 250,
+// };
+// alert(sumSalaries(salaries)); // 650
+//приклад рахує кількість властивостей. в обєкті
+// let user = {
+//   //обєкт
+//   name: "John",
+//   age: 30,
+// };
+// function count(obj) {
+//   return Object.keys(obj).length; //рахує довжину ключів в обєкті
+// }
+// alert(count(user)); // 2
