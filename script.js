@@ -829,3 +829,132 @@
 //   return Object.keys(obj).length; //рахує довжину ключів в обєкті
 // }
 // alert(count(user)); // 2
+//
+//
+//-----------------------Деструктурирующее присваивание---------------------------
+
+// Деструктуризация массива
+// Пример деструктуризации массива:
+
+// // у нас есть массив с именем и фамилией
+// let arr = ["Ilya", "Kantor"]
+
+// // деструктурирующее присваивание
+// // записывает firstName=arr[0], surname=arr[1]
+// let [firstName, surname] = arr;
+
+// alert(firstName); // Ilya
+// alert(surname);  // Kantor
+
+// приклад
+// let [a, b, c] = "abc";
+// let [one, two, three] = new Set([1, 2, 3]);
+// //
+// //
+// //---приклад
+// let user = {};
+// [user.name, user.surname] = "Ilya Kantor".split(' ');
+
+// alert(user.name); // Ilya
+
+// //---приклад
+// let user = new Map();
+// user.set("name", "John");
+// user.set("age", "30");
+
+// for (let [key, value] of user) {
+//   alert(`${key}:${value}`); // name:John, затем age:30
+// }
+
+// // приклад для обєкта
+// let options = {
+//   title: "Menu",
+//   width: 100,
+//   height: 200
+// };
+
+// let {title, width, height} = options;
+
+// alert(title);  // Menu
+// alert(width);  // 100
+// alert(height); // 200
+
+// //приклад
+// let options = {
+//   title: "Menu",
+//   width: 100,
+//   height: 200
+// };
+
+// // { sourceProperty: targetVariable }
+// let {width: w, height: h, title} = options;
+
+// // width -> w
+// // height -> h
+// // title -> title
+
+// alert(title);  // Menu
+// alert(w);      // 100
+// alert(h);      // 200
+
+// //приклад
+// let title, width, height;
+
+// // сейчас всё работает
+// ({title, width, height} = {title: "Menu", width: 200, height: 100});
+
+// alert( title ); // Menu
+
+// //приклад
+// // мы передаём объект в функцию
+// let options = {
+//   title: "My menu",
+//   items: ["Item1", "Item2"]
+// };
+
+// // ...и она немедленно извлекает свойства в переменные
+// function showMenu({title = "Untitled", width = 200, height = 100, items = []}) {
+//   // title, items – взято из options,
+//   // width, height – используются значения по умолчанию
+//   alert( `${title} ${width} ${height}` ); // My Menu 200 100
+//   alert( items ); // Item1, Item2
+// }
+
+// showMenu(options);
+
+// //приклад
+// function showMenu({ title = "Menu", width = 100, height = 200 } = {}) {
+//   alert( `${title} ${width} ${height}` );
+// }
+
+// showMenu(); // Menu 100 200
+//приклад
+// let user = { name: "John", years: 30 };
+
+// // ваш код должен быть с левой стороны:
+// // ... = user
+// let { name: name, years: age, isAdmin = false } = user;
+
+// alert(name); // John
+// alert(age); // 30
+// alert(isAdmin); // false
+
+// let salaries = {
+//   John: 100,
+//   Pete: 300,
+//   Mary: 250,
+// };
+
+// function topSalary(salaries) {
+//   let max = 0;
+//   let maxName = null;
+
+//   for (const [name, salary] of Object.entries(salaries)) {
+//     if (max < salary) {
+//       max = salary;
+//       maxName = name;
+//     }
+//   }
+
+//   return maxName;
+// }
