@@ -1044,3 +1044,74 @@
 // Символ "T" используется в качестве разделителя.
 // HH:mm:ss.sss – время: часы, минуты, секунды и миллисекунды.
 // Необязательная часть 'Z' обозначает часовой пояс в формате +-hh:mm. Если указать просто букву Z, то получим UTC+0.
+//
+//
+//
+//
+// //------------виводить дату
+// let date = new Date(2012, 1, 20, 03, 12, 0);
+// alert(date);
+//----------виводить день неділі
+// function getWeekDay(date) {
+//   let day = ["ВС", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"];
+//   return day[date.getDay()];
+// }
+
+// let date = new Date(2012, 0, 3); // 3 января 2012 года
+// alert(getWeekDay(date));
+//
+//
+//
+// //
+// //----------------повертає день, що був давніше
+// function getDateAgo(date, days) {
+//   date.setDate(date.getDate() - days);
+//   return date.getDate();
+// }
+
+// let date = new Date(2015, 0, 2);
+
+// alert(getDateAgo(date, 1)); // 1, (1 Jan 2015)
+// alert(getDateAgo(date, 2)); // 31, (31 Dec 2014)
+// alert(getDateAgo(date, 365)); // 2, (2 Jan 2014)
+
+//
+//
+//
+//
+// //-- ----------шукає останнє число місяця
+// function getLastDayOfMonth(year, month) {
+//   let date = new Date(year, month + 1, 0);
+//   return date.getDate();
+// }
+
+// alert(getLastDayOfMonth(2012, 0)); // 31
+// alert(getLastDayOfMonth(2012, 1)); // 29
+// alert(getLastDayOfMonth(2013, 1)); // 28
+//
+///
+//
+//
+//
+//-------------скільки секунд пройшло за сьогодні
+// function getSecondsToday() {
+//   let time = new Date();
+//   return time.getHours() * 3600 + time.getMinutes() * 60 + time.getSeconds();
+// }
+// console.log(getSecondsToday());
+//
+//
+// //
+// //
+// //----------секунд до завтра
+// function getSecondsToTomorrow() {
+//   let leftTime = new Date();
+//   let totalSecondsInADay = 3600 * 24;
+//   return (
+//     totalSecondsInADay -
+//     (leftTime.getHours() * 3600 +
+//       leftTime.getMinutes() * 60 +
+//       leftTime.getSeconds())
+//   );
+// }
+// console.log(getSecondsToTomorrow());
