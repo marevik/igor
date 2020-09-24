@@ -1144,3 +1144,153 @@
 //   "wife": null
 // }
 // */
+
+//
+//
+// //приклад в строку
+// let meetup = {
+//   title: "Conference",
+//   room: {
+//     number: 23,
+//     participants: ["john", "ann"]
+//   }
+// };
+
+// alert( JSON.stringify(meetup) );
+// /* вся структура преобразована в строку:
+// {
+//   "title":"Conference",
+//   "room":{"number":23,"participants":["john","ann"]},
+// }
+// */
+
+//
+// циклічні ссилки
+// let room = {
+//   number: 23
+// };
+
+// let meetup = {
+//   title: "Conference",
+//   participants: [{name: "John"}, {name: "Alice"}],
+//   place: room // meetup ссылается на room
+// };
+
+// room.occupiedBy = meetup; // room ссылается на meetup
+
+// alert( JSON.stringify(meetup, ['title', 'participants', 'place', 'name', 'number']) );
+// /*
+// {
+//   "title":"Conference",
+//   "participants":[{"name":"John"},{"name":"Alice"}],
+//   "place":{"number":23}
+// }
+// */
+//
+//
+//
+//
+// space- відступи при форматуванні
+
+// let user = {
+//   name: "John",
+//   age: 25,
+//   roles: {
+//     isAdmin: false,
+//     isEditor: true
+//   }
+// };
+
+// alert(JSON.stringify(user, null, 2));
+// /* отступ в 2 пробела:
+// {
+//   "name": "John",
+//   "age": 25,
+//   "roles": {
+//     "isAdmin": false,
+//     "isEditor": true
+//   }
+// }
+// */
+
+// /* для JSON.stringify(user, null, 4) результат содержит больше отступов:
+// {
+//     "name": "John",
+//     "age": 25,
+//     "roles": {
+//         "isAdmin": false,
+//         "isEditor": true
+//     }
+// }
+// */
+
+//parse використовується для декодування з json
+//приклад
+// // строковый массив
+// let numbers = "[0, 1, 2, 3]";
+// numbers = JSON.parse(numbers);
+// alert( numbers[1] ); // 1
+//
+//
+//приклад з вложеністю
+// let user = '{ "name": "John", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
+// user = JSON.parse(user);
+// alert( user.friends[1] ); // 1
+//
+//
+//приклад з відновленням дати
+//let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';
+// let meetup = JSON.parse(str, function(key, value) {
+//   if (key == 'date') return new Date(value);
+//   return value;
+// });
+// alert( meetup.date.getDate() ); // 30 - теперь работает!
+//
+//
+// //
+// //приклад 2 з вкладенням
+// let schedule = `{
+//   "meetups": [
+//     {"title":"Conference","date":"2017-11-30T12:00:00.000Z"},
+//     {"title":"Birthday","date":"2017-04-18T12:00:00.000Z"}
+//   ]
+// }`;
+// schedule = JSON.parse(schedule, function(key, value) {
+//   if (key == 'date') return new Date(value);
+//   return value;
+// });
+// alert( schedule.meetups[1].date.getDate() ); // 18 - отлично!
+//приклад
+// let user = {
+//   name: "Василий Иванович",
+//   age: 35,
+// };
+// let user2 = JSON.parse(JSON.stringify(user));
+//
+//
+//
+// //приклад 2
+// let room = {
+//   number: 23,
+// };
+// let meetup = {
+//   title: "Совещание",
+//   occupiedBy: [{ name: "Иванов" }, { name: "Петров" }],
+//   place: room,
+// };
+// // цикличные ссылки
+// room.occupiedBy = meetup;
+// meetup.self = meetup;
+// alert(
+//   JSON.stringify(meetup, function replacer(key, value) {
+//     return key != "" && value == meetup ? undefined : value;
+//   })
+// );
+
+// /* в результате должно быть:
+// {
+//   "title":"Совещание",
+//   "occupiedBy":[{"name":"Иванов"},{"name":"Петров"}],
+//   "place":{"number":23}
+// }
+// */
