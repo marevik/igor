@@ -1401,3 +1401,79 @@
 // }
 
 // printList(list);
+// арифметична прогресія через рекурсію
+// function sumTo(n) {
+//   if (n == 0) {
+//     return n;
+//   } else {
+//     return n + sumTo(n - 1);
+//   }
+// }
+// alert(sumTo(100));
+//
+//
+//// арифметична прогресія через цикл
+// function sumTo(n) {
+//   let result = 0;
+
+//   for (let i = 0; i <= n; i++) {
+//     result += i;
+//   }
+
+//   return result;
+// }
+// alert(sumTo(100));
+//
+//
+// //факторіал через цикл
+// function factorial(n) {
+//   let result = 1;
+//   for (let i = n; i > 1; i--) {
+//     result *= i;
+//   }
+//   return result;
+// }
+// alert(factorial(5));
+//
+//
+//
+//факторіал через рекурсію
+// function factorial(n) {
+//   if (n == 1) {
+//     return n;
+//   } else {
+//     return n * factorial(n - 1);
+//   }
+// }
+// alert(factorial(5));
+
+//
+//
+//числа Фібоначі через рекурсію
+// function fib(n) {
+//   if (n <= 1) {
+//     return n;
+//   } else {
+//     return fib(n - 1) + fib(n - 2);
+//   }
+// }
+// alert(fib(3));
+// alert(fib(7));
+// //alert(fib(77));
+
+//
+//
+//числа фібоначі через цикл
+function fib(n) {
+  let a = 1;
+  let b = 1;
+  for (let i = 3; i <= n; i++) {
+    let c = a + b;
+    a = b;
+    b = c;
+  }
+  return b;
+}
+alert(fib(3));
+alert(fib(7));
+alert(fib(77));
