@@ -1515,3 +1515,28 @@
 
 // let str = "Привет";
 // alert( [...str] ); // П,р,и,в,е,т
+//
+//
+// //// функция-конструктор возвращает новый объект
+// function User(name) {
+//     // методом объекта становится вложенная функция
+//     this.sayHi = function () {
+//         alert(name);
+//     };
+// }
+// let user = new User("John");
+// user.sayHi(); //  "sayHi" ///
+///
+//
+//
+//А здесь мы просто создаём и возвращаем функцию «счётчик»:
+function makeCounter() {
+  let count = 0;
+  return function () {
+    return count++; // есть доступ к внешней переменной "count"
+  };
+}
+let counter = makeCounter();
+alert(counter()); // 0
+alert(counter()); // 1
+alert(counter()); // 2
