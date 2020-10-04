@@ -1530,13 +1530,21 @@
 //
 //
 //А здесь мы просто создаём и возвращаем функцию «счётчик»:
-function makeCounter() {
-  let count = 0;
-  return function () {
-    return count++; // есть доступ к внешней переменной "count"
-  };
-}
-let counter = makeCounter();
-alert(counter()); // 0
-alert(counter()); // 1
-alert(counter()); // 2
+// function makeCounter() {
+//   let count = 0;
+//   return function () {
+//     return count++; // есть доступ к внешней переменной "count"
+//   };
+// }
+// let counter = makeCounter();
+// alert(counter()); // 0
+// alert(counter()); // 1
+// alert(counter()); // 2
+
+//
+// //
+// //обертання функцій дужкою для виконання
+// (function () {
+//   let message = "Hello";
+//   alert(message); // Hello
+// })();
