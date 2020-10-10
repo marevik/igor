@@ -1633,3 +1633,32 @@
 // // или, если у нас есть локальная переменная с именем "currentUser",
 // // получим её из window явно (безопасно!)
 // alert(window.currentUser.name); // John
+
+//кількість викликів
+// function sayHi() {
+//   alert("Hi");
+
+//   // давайте посчитаем, сколько вызовов мы сделали
+//   sayHi.counter++;
+// }
+// sayHi.counter = 0; // начальное значение
+// sayHi(); // Hi
+// sayHi(); // Hi
+
+// alert( `Вызвана ${sayHi.counter} раза` ); // Вызвана 2 раза
+
+
+//додаткова назва функції
+
+// let sayHi = function func(who) {
+//   if (who) {
+//     alert(`Hello, ${who}`);
+//   } else {
+//     func("Guest"); // Теперь всё в порядке
+//   }
+// };
+
+// let welcome = sayHi;
+// sayHi = null;
+
+// welcome(); // Hello, Guest (вложенный вызов работает)
