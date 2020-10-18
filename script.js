@@ -1794,28 +1794,53 @@
 //
 //
 //
-function slow(x) {
-    // здесь могут быть ресурсоёмкие вычисления
-    alert(`Called with ${x}`);
-    return x;
-}
-function cachingDecorator(func) {
-    let cache = new Map();
+// function slow(x) {
+//     // здесь могут быть ресурсоёмкие вычисления
+//     alert(`Called with ${x}`);
+//     return x;
+// }
+// function cachingDecorator(func) {
+//     let cache = new Map();
 
-    return function (x) {
-        if (cache.has(x)) {    // если кеш содержит такой x,
-            return cache.get(x); // читаем из него результат
-        }
+//     return function (x) {
+//         if (cache.has(x)) {    // если кеш содержит такой x,
+//             return cache.get(x); // читаем из него результат
+//         }
 
-        let result = func(x); // иначе, вызываем функцию
+//         let result = func(x); // иначе, вызываем функцию
 
-        cache.set(x, result); // и кешируем (запоминаем) результат
-        return result;
-    };
-}
-slow = cachingDecorator(slow);
+//         cache.set(x, result); // и кешируем (запоминаем) результат
+//         return result;
+//     };
+// }
+// slow = cachingDecorator(slow);
 
-alert(slow(1)); // slow(1) кешируем
-alert("Again: " + slow(1)); // возвращаем из кеша
-alert(slow(2)); // slow(2) кешируем
-alert("Again: " + slow(2)); // возвращаем из кеша
+// alert(slow(1)); // slow(1) кешируем
+// alert("Again: " + slow(1)); // возвращаем из кеша
+// alert(slow(2)); // slow(2) кешируем
+// alert("Again: " + slow(2)); // возвращаем из кеша
+
+// //
+//
+//
+//приклад
+// function sayHi() {
+//   alert(this.name);
+// }
+
+// let user = { name: "John" };
+// let admin = { name: "Admin" };
+
+// // используем 'call' для передачи различных объектов в качестве 'this'
+// sayHi.call( user ); // John
+// sayHi.call( admin ); // Admin
+
+//
+//
+// //cal для виклику say
+// function say(phrase) {
+//   alert(this.name + ': ' + phrase);
+// }
+// let user = { name: "John" };
+// // 'user' становится 'this', и "Hello" становится первым аргументом
+// say.call( user, "Hello" ); // John: Hello
