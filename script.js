@@ -1610,10 +1610,8 @@
 // function byField(field) {
 //   return (a, b) => (a[field] > b[field] ? 1 : -1);
 // }
-
 // users.sort(byField("name"));
 // users.forEach((user) => alert(user.name)); // Ann, John, Pete
-
 // users.sort(byField("age"));
 // users.forEach((user) => alert(user.name)); // Pete, Ann, John
 //
@@ -1896,3 +1894,94 @@
 //   }
 //   return wrapper;
 // }
+
+//
+//
+//
+//
+//==============Привязка контекста до функції
+//функція обгортка
+//приклад1
+// let user = {
+//   firstName: "Вася",
+//   sayHi() {
+//     alert(`Привет, ${this.firstName}!`);
+//   }
+// };
+// setTimeout(function() {
+//   user.sayHi(); // Привет, Вася!
+// }, 1000);
+
+//
+//
+// // привязка функції за допомогою bind
+//приклад1
+// let user = {
+//   firstName: "Вася"
+// };s
+// function func() {
+//   alert(this.firstName);
+// }
+// let funcUser = func.bind(user);
+// funcUser(); // Вася
+//
+//
+//
+//
+//приклад2
+// let user = {
+//   firstName: "Вася"
+// };
+// function func(phrase) {
+//   alert(phrase + ', ' + this.firstName);
+// }
+// // привязка this к user
+// let funcUser = func.bind(user);
+// funcUser("Привет"); // Привет, Вася (аргумент "Привет" передан, при этом this = user)
+//
+//
+//приклад3
+// let user = {
+//   firstName: "Вася",
+//   say(phrase) {
+//     alert(`${phrase}, ${this.firstName}!`);
+//   }
+// };
+// let say = user.say.bind(user);
+// say("Привет"); // Привет, Вася (аргумент "Привет" передан в функцию "say")
+// say("Пока"); // Пока, Вася (аргумент "Пока" передан в функцию "say")
+
+//
+//
+//
+//
+// //часткове примінення, щоб не повторятися
+// function mul(a, b) {
+//   return a * b;
+// }
+// let double = mul.bind(null, 2);
+// alert( double(3) ); // = mul(2, 3) = 6
+// alert( double(4) ); // = mul(2, 4) = 8
+// alert( double(5) ); // = mul(2, 5) = 10
+//
+//
+//
+//
+//приклад
+// function partial(func, ...argsBound) {
+//   return function(...args) { // (*)
+//     return func.call(this, ...argsBound, ...args);
+//   }
+// }
+// // использование:
+// let user = {
+//   firstName: "Ihor",
+//   say(time, phrase) {
+//     alert(`[${time}] ${this.firstName}: ${phrase}!`);
+//   }
+// };
+// // добавляем частично применённый метод с фиксированным временем
+// user.sayNow = partial(user.say, new Date().getHours() + ':' + new Date().getMinutes());
+// user.sayNow("Hello");
+// // Что-то вроде этого:
+// // [10:00] John: Hello!
