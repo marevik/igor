@@ -2079,3 +2079,124 @@
 // let john = new User("John", new Date(1992, 6, 1));
 // alert( john.birthday ); // доступен как день рождения
 // alert( john.age );      // ...так и возраст
+//
+//
+//
+//
+//================прототипи та наслідування
+// В JavaScript все объекты имеют скрытое свойство [[Prototype]],
+//  которое является либо другим объектом, либо null.
+// Мы можем использовать obj.__proto__ для доступа к нему (исторически обусловленный геттер/сеттер,
+//     есть другие способы, которые скоро будут рассмотрены).
+// Объект, на который ссылается [[Prototype]], называется «прототипом».
+// Если мы хотим прочитать свойство obj или вызвать метод, которого не существует у obj,
+//  тогда JavaScript попытается найти его в прототипе.
+// Операции записи/удаления работают непосредственно с объектом, они не используют прототип
+//  (если это обычное свойство, а не сеттер).
+// Если мы вызываем obj.method(), а метод при этом взят из прототипа, то this всё равно ссылается на obj.
+//  Таким образом, методы всегда работают с текущим объектом, даже если они наследуются.
+// Цикл for..in перебирает как свои, так и унаследованные свойства. Остальные методы получения ключей/значений 
+// работают только с собственными свойствами объекта.
+//
+//
+//приклад
+// let animal = {
+//   eats: true
+// };
+// let rabbit = {
+//   jumps: true
+// };
+// rabbit.__proto__ = animal;
+//
+//приклад 2
+// let animal = {
+//   eats: true
+// };
+// let rabbit = {
+//   jumps: true
+// };
+// rabbit.__proto__ = animal; // (*)
+// // теперь мы можем найти оба свойства в rabbit:
+// alert( rabbit.eats ); // true (**)
+// alert( rabbit.jumps ); // true
+//
+//
+//приклад 3 
+// let animal = {
+//   eats: true,
+//   walk() {
+//     alert("Animal walk");
+//   }
+// };
+// let rabbit = {
+//   jumps: true,
+//   __proto__: animal
+// };
+// // walk взят из прототипа
+// rabbit.walk(); // Animal walk
+//
+//
+//приклад 4
+// let user = {
+//   name: "John",
+//   surname: "Smith",
+
+//   set fullName(value) {
+//     [this.name, this.surname] = value.split(" ");
+//   },
+//   get fullName() {
+//     return `${this.name} ${this.surname}`;
+//   }
+// };
+// let admin = {
+//   __proto__: user,
+//   isAdmin: true
+// };
+// alert(admin.fullName); // John Smith (*)
+// // срабатывает сеттер!
+// admin.fullName = "Alice Cooper"; // (**)
+// alert(admin.name); // Alice
+// alert(admin.surname); // Cooper
+//
+//
+//
+//приклад 5
+// методы animal
+// let animal = {
+//   walk() {
+//     if (!this.isSleeping) {
+//       alert(`I walk`);
+//     }
+//   },
+//   sleep() {
+//     this.isSleeping = true;
+//   }
+// };
+// let rabbit = {
+//   name: "White Rabbit",
+//   __proto__: animal
+// };
+// // модифицирует rabbit.isSleeping
+// rabbit.sleep();
+// alert(rabbit.isSleeping); // true
+// alert(animal.isSleeping); // undefined (нет такого свойства в прототипе)
+
+//
+//
+//
+// //приклад 6
+// let animal = {
+//   eats: true
+// };
+// let rabbit = {
+//   jumps: true,
+//   __proto__: animal
+// };
+// for(let prop in rabbit) {
+//   let isOwn = rabbit.hasOwnProperty(prop);
+//   if (isOwn) {
+//     alert(`Our: ${prop}`); // Our: jumps
+//   } else {
+//     alert(`Inherited: ${prop}`); // Inherited: eats
+//   }
+// }
