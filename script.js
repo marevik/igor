@@ -2234,3 +2234,29 @@
 // Rabbit.prototype = animal;
 // let rabbit = new Rabbit("White Rabbit"); //  rabbit.__proto__ == animal
 // alert( rabbit.eats ); // true
+//
+//
+//
+//
+// let obj = {
+//   0: "Hello",
+//   1: "world!",
+//   length: 2,
+// };
+// obj.join = Array.prototype.join;
+// alert( obj.join(',') ); // Hello,world!
+// //
+// //
+// //
+// //
+// if (!String.prototype.repeat) { // Если такого метода нет
+//   // добавляем его в прототип
+//   String.prototype.repeat = function(n) {
+//     // повторить строку n раз
+//     // на самом деле код должен быть немного более сложным
+//     // (полный алгоритм можно найти в спецификации)
+//     // но даже неполный полифил зачастую достаточно хорош для использования
+//     return new Array(n + 1).join(this);
+//   };
+// }
+// alert( "La".repeat(3) ); // LaLaLa
