@@ -2286,3 +2286,45 @@
 //   alert( a + b );
 // }
 // f.defer(1000)(1, 2); // выведет 3 через 1 секунду.
+
+//
+//
+//Свойство __proto__ считается устаревшим, и по стандарту оно должно поддерживаться только браузерами.
+// Современные же методы это:
+// Object.create(proto, [descriptors]) – создаёт пустой объект со свойством [[Prototype]],
+//  указанным как proto, и необязательными дескрипторами свойств descriptors.
+// Object.getPrototypeOf(obj) – возвращает свойство [[Prototype]] объекта obj.
+// Object.setPrototypeOf(obj, proto) – устанавливает свойство [[Prototype]] объекта obj как proto.
+//
+//
+//
+//let animal = {
+//   eats: true
+// };
+// создаём новый объект с прототипом animal
+// let rabbit = Object.create(animal);
+// alert(rabbit.eats); // true
+// alert(Object.getPrototypeOf(rabbit) === animal); // получаем прототип объекта rabbit
+// Object.setPrototypeOf(rabbit, {}); // заменяем прототип объекта rabbit на {}
+//
+//
+//
+// let animal = {
+//   eats: true
+// };
+// let rabbit = Object.create(animal, {
+//   jumps: {
+//     value: true
+//   }
+// });
+// alert(rabbit.jumps); // true
+//
+//
+// //
+// Ещё методы:
+// Object.keys(obj) / Object.values(obj) / Object.entries(obj) – возвращают массив всех перечисляемых 
+// собственных строковых ключей/значений/пар ключ-значение.
+// Object.getOwnPropertySymbols(obj) – возвращает массив всех собственных символьных ключей.
+// Object.getOwnPropertyNames(obj) – возвращает массив всех собственных строковых ключей.
+// Reflect.ownKeys(obj) – возвращает массив всех собственных ключей.
+// obj.hasOwnProperty(key): возвращает true, если у obj есть собственное (не унаследованное) свойство с именем key.
