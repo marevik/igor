@@ -2505,3 +2505,18 @@
 // Статические свойства и методы наследуются.
 // Для class B extends A прототип класса B указывает на A: B.[[Prototype]] = A. Таким образом, если поле не найдено в B, 
 // поиск продолжается в A.
+//
+//
+//
+//
+// //class CoffeeMachine {
+//   waterAmount = 0; // количество воды внутри
+//   constructor(power) {
+//     this.power = power;
+//     alert( `Создана кофеварка, мощность: ${power}` );
+//   }
+// }
+// // создаём кофеварку
+// let coffeeMachine = new CoffeeMachine(100);
+// // добавляем воды
+// coffeeMachine.waterAmount = 200;
