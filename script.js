@@ -2605,3 +2605,30 @@
 // let filteredArr = arr.filter(item => item >= 10);
 // alert(filteredArr); // 10, 50
 // alert(filteredArr.isEmpty()); // false
+//
+//
+//
+//
+// //
+// Давайте обобщим, какие методы для проверки типа мы знаем:
+
+// работает     --     для  --  	возвращает
+// typeof--	примитивов   --  	строка
+// {}.toString--	примитивов, встроенных объектов, объектов с Symbol.toStringTag --	строка
+// instanceof--	объектов  --	true/false
+// Как мы можем видеть, технически {}.toString «более продвинут», чем typeof.
+// А оператор instanceof – отличный выбор, когда мы работаем с иерархией классов и хотим делать проверки с учётом наследования.
+
+// // toStringTag для браузерного объекта и класса
+// alert( window[Symbol.toStringTag]); // window
+// alert( XMLHttpRequest.prototype[Symbol.toStringTag] ); // XMLHttpRequest
+// alert( {}.toString.call(window) ); // [object Window]
+// alert( {}.toString.call(new XMLHttpRequest()) ); // [object XMLHttpRequest]
+
+//
+//
+//
+// let user = {
+//   [Symbol.toStringTag]: "User"
+// };
+// alert( {}.toString.call(user) ); // [object User]
