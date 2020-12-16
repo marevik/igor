@@ -2632,3 +2632,52 @@
 //   [Symbol.toStringTag]: "User"
 // };
 // alert( {}.toString.call(user) ); // [object User]
+//
+// //
+// Примесь – общий термин в объектно-ориентированном программировании: класс, 
+// который содержит в себе методы для других классов.
+// // example
+// let sayMixin = {
+//   say(phrase) {
+//     alert(phrase);
+//   }
+// };
+// let sayHiMixin = {
+//   __proto__: sayMixin, // (или мы можем использовать Object.create для задания прототипа)
+//   sayHi() {
+//     // вызываем метод родителя
+//     super.say(`Привет, ${this.name}`); // (*)
+//   },
+//   sayBye() {
+//     super.say(`Пока, ${this.name}`); // (*)
+//   }
+// };
+// class User {
+//   constructor(name) {
+//     this.name = name;
+//   }
+// }
+// // копируем методы
+// Object.assign(User.prototype, sayHiMixin);
+// // теперь User может сказать Привет
+// new User("Вася").sayHi(); // Привет, Вася!
+//
+//
+//
+//
+// // Создадим класс
+// class Menu {
+//   choose(value) {
+//     this.trigger("select", value);
+//   }
+// }
+// // Добавим примесь с методами для событий
+// Object.assign(Menu.prototype, eventMixin);
+// let menu = new Menu();
+// // Добавить обработчик, который будет вызван при событии "select":
+// menu.on("select", value => alert(`Выбранное значение: ${value}`));
+// // Генерирует событие => обработчик выше запускается и выводит:
+// menu.choose("123"); // Выбранное значение: 123
+//
+//
+//
