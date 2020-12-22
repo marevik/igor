@@ -2685,3 +2685,13 @@
 // } catch (err) {
 //   // обработка ошибки
 // }
+
+//
+//
+//setTimeout(function() {
+//   try {
+//     noSuchVariable; // try..catch обрабатывает ошибку!
+//   } catch {
+//     alert( "ошибка поймана!" );
+//   }
+// }, 1000);
